@@ -14,7 +14,7 @@ export default function Home() {
       <main>
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
           <h1 className="text-2xl font-bold">HTML Select Parser</h1>
-          <h2>Insert an {"<ul>...</ul> here"}</h2>
+          <h2>Insert a {"<ul>...</ul> here"}</h2>
           <div className="flex flex-col w-full max-w-4xl p-4 space-y-4">
             <Textarea
               placeholder="Enter HTML here"
@@ -28,7 +28,7 @@ export default function Home() {
                   parseHTML(inputHTML)
                     .map((item) => item.liArray.join("\n"))
                     .join("\n")
-                ) as unknown as void;
+                );
               }}
             >
               Parse HTML
