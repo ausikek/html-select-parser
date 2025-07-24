@@ -1,45 +1,24 @@
-"use client";
-
-import { useState } from "react";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { parseHTML } from "@/lib/parse";
+import List from "@/components/main/List";
+import Table from "@/components/main/Table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Home() {
-  const [inputHTML, setInputHTML] = useState<string>("");
-  const [outputHTML, setOutputHTML] = useState<string>("");
-
   return (
     <>
       <main>
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
-          <h1 className="text-2xl font-bold">HTML Select Parser</h1>
-          <h2>Insert a {"<ul>...</ul> here"}</h2>
-          <div className="flex flex-col w-full max-w-4xl p-4 space-y-4">
-            <Textarea
-              placeholder="Enter HTML here"
-              value={inputHTML}
-              onChange={(e) => setInputHTML(e.target.value)}
-              rows={10}
-            />
-            <Button
-              onClick={() => {
-                setOutputHTML(
-                  parseHTML(inputHTML)
-                    .map((item) => item.liArray.join("\n"))
-                    .join("\n")
-                );
-              }}
-            >
-              Parse HTML
-            </Button>
-            <Textarea
-              placeholder="Parsed HTML will appear here"
-              value={outputHTML}
-              readOnly
-              rows={10}
-            />
-          </div>
+          <Tabs defaultValue="select" className="w-[800px]">
+            <TabsList>
+              <TabsTrigger value="select">Select</TabsTrigger>
+              <TabsTrigger value="table">Table</TabsTrigger>
+            </TabsList>
+            <TabsContent value="select">
+              <List />
+            </TabsContent>
+            <TabsContent value="table">
+              <Table />
+            </TabsContent>
+          </Tabs>
         </div>
       </main>
     </>
